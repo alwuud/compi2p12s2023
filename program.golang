@@ -1,0 +1,27 @@
+package main
+
+import (
+    "fmt"
+    "github.com/antlr/antlr4/runtime/Go/antlr"
+    "YourLanguageParser" // Import the generated parser
+)
+
+func main() {
+    // Create an input stream from your code
+    input := antlr.NewInputStream("var x: int = 42")
+
+    // Create a lexer
+    lexer := YourLanguageLexer.NewYourLanguageLexer(input)
+
+    // Create a token stream
+    tokens := antlr.NewCommonTokenStream(lexer, 0)
+
+    // Create a parser
+    parser := YourLanguageParser.NewYourLanguageParser(tokens)
+
+    // Parse your code (assuming "program" is your top-level rule)
+    tree := parser.Program()
+
+    // You can implement a visitor pattern to process the AST here.
+    // tree.Accept(visitor)
+}
